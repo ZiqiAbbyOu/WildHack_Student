@@ -680,6 +680,7 @@ MonoBehaviour:
   taskContainner: {fileID: 1954786963}
   isExlusive: 0
   isTodoList: 0
+  isTimeSlot: 0
 --- !u!1 &385042582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,6 +1211,7 @@ MonoBehaviour:
   taskContainner: {fileID: 33123929}
   isExlusive: 0
   isTodoList: 1
+  isTimeSlot: 0
 --- !u!1 &667058268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,6 +1459,7 @@ MonoBehaviour:
   taskContainner: {fileID: 1805644291}
   isExlusive: 1
   isTodoList: 0
+  isTimeSlot: 1
 --- !u!1 &669393476
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,6 +3558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2080325530}
   - component: {fileID: 2080325531}
+  - component: {fileID: 2080325532}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -3591,6 +3595,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentTransform: {fileID: 33123929}
   todoBlockPrefab: {fileID: 4042762523504179045, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
+--- !u!114 &2080325532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080325529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496f0a9928641412680f248136478c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerTaskSlot: {fileID: 0}
+  initialTime: 0
+  updatedTime: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

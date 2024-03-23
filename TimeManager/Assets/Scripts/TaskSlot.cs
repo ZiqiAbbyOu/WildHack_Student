@@ -8,6 +8,7 @@ public class TaskSlot : MonoBehaviour, IDropHandler
     public Transform taskContainner;
     public bool isExlusive;
     public bool isTodoList;
+    public bool isTimeSlot;
 
     
 
@@ -36,5 +37,15 @@ public class TaskSlot : MonoBehaviour, IDropHandler
 
         // Set task controller bool isTodoList
         taskController.isInTodoList = isTodoList;
+
+
+        // Initialize game timer if it is timer slot
+        if (isTimeSlot)
+        {
+            TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
+            int.TryParse(taskController.timeInputField.text, out timerManager.initialTime);
+            Debug.Log(timerManager.initialTime);
+        }
+
     }
 }
