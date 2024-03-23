@@ -10,11 +10,13 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public Vector3 startPosition;
     public Transform originalParent;
     public Transform backgroundParent;
+    [SerializeField] Canvas canvas;
 
     private void Start()
     {
         backgroundParent = GameObject.Find("Background").transform;
         rectTransform = GetComponent<RectTransform>();
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
 
     // Delete Block
@@ -40,7 +42,8 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         //transform.position = Input.mousePosition;
         //throw new System.NotImplementedException();
-        rectTransform.anchoredPosition += eventData.delta;
+        rectTransform.anchoredPosition += eventData.delta/canvas.scaleFactor;
+
 
         //Debug.Log("On Drag");
     }
