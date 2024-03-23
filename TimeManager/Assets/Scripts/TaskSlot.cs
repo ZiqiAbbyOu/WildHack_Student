@@ -43,8 +43,9 @@ public class TaskSlot : MonoBehaviour, IDropHandler
         if (isTimeSlot)
         {
             TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
-            int.TryParse(taskController.timeInputField.text, out timerManager.initialTime);
-            Debug.Log(timerManager.initialTime);
+            int.TryParse(taskController.timeInputField.text, out int initialTime);
+            timerManager.InitializeTimer(initialTime);
+            Debug.Log("Initial Time: " + initialTime +  "Time Manager time: " + timerManager.remainingTime);
         }
 
     }
