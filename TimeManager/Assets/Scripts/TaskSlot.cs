@@ -51,14 +51,23 @@ public class TaskSlot : MonoBehaviour, IDropHandler
         if (isTimeSlot)
         {
             // initialize game timer
-            //TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
-            int.TryParse(taskController.timeInputField.text, out int initialTime);
-            timerManager.InitializeTimer(initialTime);
-            timerManager.TimerUpdate();
-            //Debug.Log("Initial Time: " + initialTime +  "Time Manager time: " + timerManager.remainingTime);
+            bool hasTime = int.TryParse(taskController.timeInputField.text, out int initialTime);
+            timerManager.onGoingTask = taskController;
+            // if initialTime is 0, ask if they forget things
+            if (!hasTime)
+            {
+                timerManager.UpdateEncouragement("Did you forget setting your time?");
+            }
+            else
+            {
+                timerManager.playButton.interactable = true;
+                timerManager.InitializeTimer(initialTime);
+                timerManager.TimerUpdate();
+                //Debug.Log("Initial Time: " + initialTime +  "Time Manager time: " + timerManager.remainingTime);
 
-            // Update Encouragement
-            timerManager.UpdateEncouragement("Now Click The Play Button Below To Start The Timer!");
+                // Update Encouragement
+                timerManager.UpdateEncouragement("Now Click The Play Button Below To Start The Timer!");
+            }
         }
         else // stop and initialize game timer if it is not timer slot
         {

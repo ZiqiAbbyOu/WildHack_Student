@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TimerManager : MonoBehaviour
 {
@@ -20,6 +21,20 @@ public class TimerManager : MonoBehaviour
     public GameObject yesButton;
     public GameObject noButton;
 
+    //Play Button
+    public Button playButton;
+    public Button pauseButton;
+    public Button stopButton;
+
+    //timer pointer
+    public GameObject timerPointer;
+
+    // ongoing task
+    public TaskController onGoingTask;
+    public Transform todoListTransform;
+    public Transform finishedTransform;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +51,7 @@ public class TimerManager : MonoBehaviour
             remainingTime -= Time.deltaTime;
 
             TimerUpdate();
+            UpdateTimerPointer();
 
             if (remainingTime <= initialTime / 2)
             {
@@ -44,10 +60,7 @@ public class TimerManager : MonoBehaviour
 
             if (remainingTime <= 0)
             {
-                UpdateEncouragement("Times Up! You Made It!");
-                timerRunning = false;
-                remainingTime = 0;
-                TimerUpdate();
+                TimesUp();
             }
 
             
@@ -68,6 +81,7 @@ public class TimerManager : MonoBehaviour
     public void StartCounting()
     {
         timerRunning = true;
+        UpdateEncouragement("You've got this!");
     }
 
 
@@ -96,7 +110,16 @@ public class TimerManager : MonoBehaviour
     public void SetRemainingTimerToZero()
     {
         remainingTime = 0.0f;
+        
 
+    }
+
+    public void ResetTimer()
+    {
+        initialTime = 0;
+        SetRemainingTimerToZero();
+        ResetTimerPointer();
+        TimerUpdate();
     }
 
     // stop the timer
@@ -105,11 +128,89 @@ public class TimerManager : MonoBehaviour
         timerRunning = false;
         SetRemainingTimerToZero();
         UpdateEncouragement("Waw, you done early?");
+        EnableButtons();
+        playButton.interactable = false;
+        pauseButton.interactable = false;
+        stopButton.interactable = false;
 
-
-        // It is ok, we will try it again later!
-        // Great Job! (And move it to the Finished list)
     }
+
+    public void UpdateEncouragementFinishedYes()
+    {
+        UpdateEncouragement("Amazing!");
+        DisableButtons();
+
+        // Push to Finish List
+        onGoingTask.MoveToContainer(finishedTransform);
+        ResetTimer();
+        
+    }
+
+    public void UpdateEncouragementFinishedNo()
+    {
+        UpdateEncouragement("It is ok, we will try it again later!");
+        DisableButtons();
+
+        // Push to Todo List
+        onGoingTask.MoveToContainer(todoListTransform);
+        ResetTimer();
+    }
+
+
+
+    public void EnableButtons()
+    {
+        yesButton.SetActive(true);
+        noButton.SetActive(true);
+    }
+
+    public void DisableButtons()
+    {
+        yesButton.SetActive(false);
+        noButton.SetActive(false);
+        Debug.Log("Disabled buttons");
+    }
+
+
+    // Reach the time
+
+    public void TimesUp()
+    {
+        UpdateEncouragement("Times Up! Have You Finished?");
+        timerRunning = false;
+        remainingTime = 0;
+        TimerUpdate();
+        EnableButtons();
+
+        playButton.interactable = false;
+        pauseButton.interactable = false;
+        stopButton.interactable = false;
+    }
+
+
+    //Timer Pointer
+
+    public void UpdateTimerPointer()
+    {
+        float elapsedTime = initialTime - remainingTime;
+        if (elapsedTime <= initialTime)
+        {
+            float angle = Map(elapsedTime, 0, initialTime, 0, 180);
+            timerPointer.transform.rotation = Quaternion.Euler(0, 0, -angle);
+        }
+    }
+
+    public float Map(float value, float fromSource, float toSource, float fromTarget, float toTarget)
+    {
+        return (value - fromSource) / (toSource - fromSource) * (toTarget - fromTarget) + fromTarget;
+    }
+
+    public void ResetTimerPointer()
+    {
+        timerPointer.transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
+
 
 
 }

@@ -87,4 +87,12 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         throw new System.NotImplementedException();
     }
+
+    // move to container
+    public void MoveToContainer(Transform parentTransform)
+    {
+        transform.SetParent(parentTransform);
+        startPosition = parentTransform.position;
+        originalParent = parentTransform;
+    }
 }
