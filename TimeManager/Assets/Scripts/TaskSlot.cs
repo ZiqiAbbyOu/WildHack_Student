@@ -9,6 +9,8 @@ public class TaskSlot : MonoBehaviour, IDropHandler
     public bool isExlusive;
     public bool isTodoList;
     public bool isTimeSlot;
+    public bool isDoneList;
+    public TimerManager timerManager;
 
     
 
@@ -16,6 +18,7 @@ public class TaskSlot : MonoBehaviour, IDropHandler
     void Start()
     {
         //taskContainner = GameObject.Find("Task Container").transform;
+        timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
     }
 
     // Update is called once per frame
@@ -36,16 +39,41 @@ public class TaskSlot : MonoBehaviour, IDropHandler
         }
 
         // Set task controller bool isTodoList
-        taskController.isInTodoList = isTodoList;
+
+        if (isTodoList)
+        {
+            taskController.isInTodoList = isTodoList;
+            timerManager.UpdateEncouragement("Move Your Task Here to Begin!");
+        }
 
 
-        // Initialize game timer if it is timer slot
+        //if it is timer slot, Initialize game timer 
         if (isTimeSlot)
         {
-            TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
+            // initialize game timer
+            //TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
             int.TryParse(taskController.timeInputField.text, out int initialTime);
             timerManager.InitializeTimer(initialTime);
-            Debug.Log("Initial Time: " + initialTime +  "Time Manager time: " + timerManager.remainingTime);
+            timerManager.TimerUpdate();
+            //Debug.Log("Initial Time: " + initialTime +  "Time Manager time: " + timerManager.remainingTime);
+
+            // Update Encouragement
+            timerManager.UpdateEncouragement("Now Click The Play Button Below To Start The Timer!");
+        }
+        else // stop and initialize game timer if it is not timer slot
+        {
+            //TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
+            timerManager.timerRunning = false;
+            timerManager.InitializeTimer(0);
+            timerManager.TimerUpdate();
+        }
+
+        // if it is Done list, Update Encouragement
+        if (isDoneList)
+        {
+            //TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
+            timerManager.UpdateEncouragement("Congratulations! You Made It!");
+
         }
 
     }

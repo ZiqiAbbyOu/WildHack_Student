@@ -11,7 +11,14 @@ public class TimerManager : MonoBehaviour
     public int updatedTime;
     public bool timerRunning = false;
     public float remainingTime;
-    public TextMeshProUGUI timerDisplay;
+
+    //Updating Text and image 
+    public TextMeshProUGUI timerDisplayTMP;
+    public TextMeshProUGUI encouragementTMP;
+
+    //Selection Buttons
+    public GameObject yesButton;
+    public GameObject noButton;
 
     // Start is called before the first frame update
     void Start()
@@ -28,18 +35,26 @@ public class TimerManager : MonoBehaviour
         {
             remainingTime -= Time.deltaTime;
 
-            int minuteLeft = Mathf.FloorToInt(remainingTime / 60);
-            int secondLeft = Mathf.FloorToInt(remainingTime % 60);
+            TimerUpdate();
 
-            timerDisplay.text = string.Format("{0:00}:{1:00}", minuteLeft, secondLeft);
+            if (remainingTime <= initialTime / 2)
+            {
+                UpdateEncouragement("Half Way Through! You Got This!");
+            }
 
             if (remainingTime <= 0)
             {
+                UpdateEncouragement("Times Up! You Made It!");
                 timerRunning = false;
                 remainingTime = 0;
+                TimerUpdate();
             }
 
+            
+
         }
+
+        
 
 
     }
@@ -55,6 +70,46 @@ public class TimerManager : MonoBehaviour
         timerRunning = true;
     }
 
+
+    public void UpdateEncouragement(string log)
+    {
+        encouragementTMP.text = log;
+    }
+
+    public void TimerUpdate()
+    {
+        int minuteLeft = Mathf.FloorToInt(remainingTime / 60);
+        int secondLeft = Mathf.FloorToInt(remainingTime % 60);
+
+        timerDisplayTMP.text = string.Format("{0:00}:{1:00}", minuteLeft, secondLeft);
+    }
+
+    public void PauseTimer()
+    {
+        timerRunning = false;
+        UpdateEncouragement("It's OK! Just Take A Break!");
+
+    }
+
+
+    
+    public void SetRemainingTimerToZero()
+    {
+        remainingTime = 0.0f;
+
+    }
+
+    // stop the timer
+    public void StopTimer()
+    {
+        timerRunning = false;
+        SetRemainingTimerToZero();
+        UpdateEncouragement("Waw, you done early?");
+
+
+        // It is ok, we will try it again later!
+        // Great Job! (And move it to the Finished list)
+    }
 
 
 }
