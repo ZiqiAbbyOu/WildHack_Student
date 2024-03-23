@@ -7,6 +7,7 @@ public class TaskSlot : MonoBehaviour, IDropHandler
 {
     public Transform taskContainner;
     public bool isExlusive;
+    public bool isTodoList;
 
     
 
@@ -32,5 +33,8 @@ public class TaskSlot : MonoBehaviour, IDropHandler
             taskController.startPosition = taskContainner.position;
             taskController.originalParent = taskContainner;
         }
+
+        // Set task controller bool isTodoList
+        taskController.isInTodoList = isTodoList;
     }
 }

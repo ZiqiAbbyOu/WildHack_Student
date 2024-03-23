@@ -679,6 +679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskContainner: {fileID: 1954786963}
   isExlusive: 0
+  isTodoList: 0
 --- !u!1 &385042582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,6 +1209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskContainner: {fileID: 33123929}
   isExlusive: 0
+  isTodoList: 1
 --- !u!1 &667058268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   taskContainner: {fileID: 1805644291}
   isExlusive: 1
+  isTodoList: 0
 --- !u!1 &669393476
 GameObject:
   m_ObjectHideFlags: 0

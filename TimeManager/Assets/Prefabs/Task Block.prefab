@@ -714,6 +714,9 @@ MonoBehaviour:
   originalParent: {fileID: 0}
   backgroundParent: {fileID: 0}
   canvas: {fileID: 0}
+  isInTodoList: 0
+  taskInputField: {fileID: 124952217572501543}
+  timeInputField: {fileID: 6855601646930625178}
 --- !u!225 &6308345433062221855
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,11 +13,17 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public Transform backgroundParent;
     [SerializeField] Canvas canvas;
 
+    // control the interactable
+    public bool isInTodoList;
+    public TMP_InputField taskInputField;
+    public TMP_InputField timeInputField;
+
     private void Start()
     {
         backgroundParent = GameObject.Find("Background").transform;
         rectTransform = GetComponent<RectTransform>();
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        isInTodoList = true;
     }
 
     // Delete Block
@@ -54,7 +61,19 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         transform.position = startPosition;
         transform.SetParent(originalParent);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        //throw new System.NotImplementedException();
+
+
+        // if not in todo list, disable the input field
+        if (!isInTodoList)
+        {
+            taskInputField.interactable = false;
+            timeInputField.interactable = false;
+        }
+        else
+        {
+            taskInputField.interactable = true;
+            timeInputField.interactable = true;
+        }
 
         Debug.Log("End Drag");
     }
