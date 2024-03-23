@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockController : MonoBehaviour
+public class AddTaskBlock : MonoBehaviour
 {
+    public Transform contentTransform;
+    public GameObject todoBlockPrefab;
 
-    public GameObject block;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,9 @@ public class BlockController : MonoBehaviour
     }
 
 
-    // Delete Block
-    public void DeleteBlock()
+    // Create New Block In Content
+    public void CreateNewTodoBlock()
     {
-        Destroy(block);
+        Instantiate(todoBlockPrefab, contentTransform);
     }
 }
