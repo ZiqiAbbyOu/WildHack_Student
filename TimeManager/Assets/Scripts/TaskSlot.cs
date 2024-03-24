@@ -12,7 +12,7 @@ public class TaskSlot : MonoBehaviour, IDropHandler
     public bool isDoneList;
     public TimerManager timerManager;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +53,7 @@ public class TaskSlot : MonoBehaviour, IDropHandler
             // initialize game timer
             bool hasTime = int.TryParse(taskController.timeInputField.text, out int initialTime);
             timerManager.onGoingTask = taskController;
+            taskController.SetDeleteButtonActive(false);
             // if initialTime is 0, ask if they forget things
             if (!hasTime)
             {
@@ -75,6 +76,8 @@ public class TaskSlot : MonoBehaviour, IDropHandler
             timerManager.timerRunning = false;
             timerManager.InitializeTimer(0);
             timerManager.TimerUpdate();
+            taskController.SetDeleteButtonActive(true);
+            timerManager.ResetTimer();
         }
 
         // if it is Done list, Update Encouragement

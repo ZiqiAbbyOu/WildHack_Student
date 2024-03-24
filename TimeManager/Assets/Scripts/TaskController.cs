@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IDropHandler
 {
@@ -17,6 +18,9 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public bool isInTodoList;
     public TMP_InputField taskInputField;
     public TMP_InputField timeInputField;
+
+    // Delete Button
+    public Button deleteButton;
 
     private void Start()
     {
@@ -95,4 +99,13 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         startPosition = parentTransform.position;
         originalParent = parentTransform;
     }
+
+    // Disable delete button
+    public void SetDeleteButtonActive(bool isActive)
+    {
+        deleteButton.gameObject.SetActive(isActive);
+    }
+
+
+    
 }
