@@ -143,8 +143,10 @@ public class TimerManager : MonoBehaviour
         // Push to Finish List
         onGoingTask.MoveToContainer(finishedTransform);
         ResetTimer();
-        
+        onGoingTask.timeInputField.interactable = true;
+        onGoingTask.taskInputField.interactable = true;
     }
+
 
     public void UpdateEncouragementFinishedNo()
     {
@@ -154,6 +156,7 @@ public class TimerManager : MonoBehaviour
         // Push to Todo List
         onGoingTask.MoveToContainer(todoListTransform);
         ResetTimer();
+        onGoingTask.taskInputField.interactable = true;
     }
 
 

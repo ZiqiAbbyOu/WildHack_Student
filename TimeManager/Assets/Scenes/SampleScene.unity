@@ -718,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_AnchorMin.x
@@ -726,11 +726,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 164.12001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_SizeDelta.y
@@ -766,11 +766,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 82.060005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5553207700600031975, guid: b722d29173d1944b7bb70d9f1062453b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385042582}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1939,7 +1939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

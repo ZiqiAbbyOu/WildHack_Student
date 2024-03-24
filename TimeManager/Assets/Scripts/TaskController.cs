@@ -68,16 +68,16 @@ public class TaskController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
 
         // if not in todo list, disable the input field
-        if (!isInTodoList)
-        {
-            taskInputField.interactable = false;
-            timeInputField.interactable = false;
-        }
-        else
-        {
-            taskInputField.interactable = true;
-            timeInputField.interactable = true;
-        }
+        //if (!isInTodoList || )
+        //{
+        //    taskInputField.interactable = false;
+        //    timeInputField.interactable = false;
+        //}
+        //else
+        //{
+        //    taskInputField.interactable = true;
+        //    timeInputField.interactable = true;
+        //}
 
         Debug.Log("End Drag");
     }

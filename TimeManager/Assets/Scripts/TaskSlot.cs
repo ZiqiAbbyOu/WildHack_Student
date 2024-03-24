@@ -39,11 +39,16 @@ public class TaskSlot : MonoBehaviour, IDropHandler
         }
 
         // Set task controller bool isTodoList
-
+        taskController.isInTodoList = isTodoList;
         if (isTodoList)
         {
-            taskController.isInTodoList = isTodoList;
+            taskController.taskInputField.interactable = true;
+            taskController.timeInputField.interactable = true;
             timerManager.UpdateEncouragement("Move Your Task Here to Begin!");
+        }
+        else
+        {
+            
         }
 
 
@@ -54,10 +59,13 @@ public class TaskSlot : MonoBehaviour, IDropHandler
             bool hasTime = int.TryParse(taskController.timeInputField.text, out int initialTime);
             timerManager.onGoingTask = taskController;
             taskController.SetDeleteButtonActive(false);
+
+            taskController.taskInputField.interactable = false;
+            taskController.timeInputField.interactable = false;
             // if initialTime is 0, ask if they forget things
             if (!hasTime)
             {
-                timerManager.UpdateEncouragement("Did you forget setting your time?");
+                timerManager.UpdateEncouragement("Did you forget setting your time? (drag back to enter time)");
             }
             else
             {
@@ -67,7 +75,7 @@ public class TaskSlot : MonoBehaviour, IDropHandler
                 //Debug.Log("Initial Time: " + initialTime +  "Time Manager time: " + timerManager.remainingTime);
 
                 // Update Encouragement
-                timerManager.UpdateEncouragement("Now Click The Play Button Below To Start The Timer!");
+                timerManager.UpdateEncouragement("Click The Play Button To Start The Timer!");
             }
         }
         else // stop and initialize game timer if it is not timer slot
@@ -77,6 +85,7 @@ public class TaskSlot : MonoBehaviour, IDropHandler
             timerManager.InitializeTimer(0);
             timerManager.TimerUpdate();
             taskController.SetDeleteButtonActive(true);
+            
             timerManager.ResetTimer();
         }
 
@@ -85,7 +94,8 @@ public class TaskSlot : MonoBehaviour, IDropHandler
         {
             //TimerManager timerManager = GameObject.Find("Game Manager").GetComponent<TimerManager>();
             timerManager.UpdateEncouragement("Congratulations! You Made It!");
-
+            taskController.taskInputField.interactable = true;
+            taskController.timeInputField.interactable = true;
         }
 
     }
